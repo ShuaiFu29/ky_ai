@@ -11,3 +11,4 @@
 # git 配置
 - git config --global user.name "username"  # 用户名
 - git config --global user.email "email"    # 邮箱
+- new.txt
