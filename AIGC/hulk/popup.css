@@ -1,0 +1,44 @@
+body {
+    width: 250px;   /* 调整为更小的正方形宽度 */
+    height: 250px;  /* 调整为更小的正方形高度 */
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #4CAF50;  /* 标题下边框 */
+    padding-bottom: 8px;
+}
+
+p {
+    color: #666;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+#changeColorButton {
+    background-color: #4CAF50;  /* 绿色按钮 */
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#changeColorButton:hover {
+    background-color: #45a049;  /* 悬停时颜色加深 */
+}
