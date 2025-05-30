@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="friends">
+
+    </ul>
+</body>
+<script>
+    //JSON 数组  也是数据
+    const friends = [
+        { name: '张三', hometown: '北京' },
+        { name: '李四', hometown: '上海' },
+        { name: '王五', hometown: '广州' },
+        { name: '赵六', hometown: '深圳' },
+    ]
+    // DOM 编程
+    const ul = document.getElementById('friends')
+    // for (let i = 0; i < friends.length; i++) {
+    //     const friend = friends[i]
+    //     ul.innerHTML += `
+    //         <li>
+    //             ${friend.name}---${friend.hometown}
+    //         </li>
+    //     `
+    // }
+    // 如果不需要index 可以使用for of 循环
+    // for (let friend of friends) {
+    //     ul.innerHTML += `
+    //         <li>
+    //             ${friend.name}---${friend.hometown}
+    //         </li>
+    //     `
+    // }
+    // 迭代每个元素 迭代器 map 有返回值
+    // friends.map(friend => {
+    //     ul.innerHTML += `
+    //     <li>
+    //         ${friend.name}---${friend.hometown}
+    //     </li>
+    // `
+    // })
+    // reduce
+    ul.innerHTML = friends.reduce((html, friend) => {
+        return html + `
+        <li>
+            ${friend.name}---${friend.hometown}
+        </li>
+    `;
+    }, "");
+
+</script>
+
+</html>
