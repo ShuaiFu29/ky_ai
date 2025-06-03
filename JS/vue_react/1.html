@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>原生JS</title>
+</head>
+
+<body>
+    <div class="container">
+        <table id="friends" class="table table-striped">
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>家乡</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>王五</th>
+                    <th>深圳</th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+<!-- 需要挂载点把数据渲染 -->
+<script>
+    //挂载点
+    // JSON 数组 
+    // DOM 编程 动态页面 数据
+    // 挂载点 html 由JS 动态生成
+    const friends = [
+        {
+            name: '张三',
+            hometown: '北京'
+        },
+        {
+            name: '李四',
+            hometown: '上海'
+        }
+    ]
+    // html 字符串 = 数组 类型转换 主动变成primitive 类型
+    document.querySelector('#friends tbody').innerHTML = friends.map(friend => `
+        <tr>
+            <td>${friend.name}</td>
+            <td>${friend.hometown}</td>    
+        </tr>
+    `).join('')
+</script>
+
+</html>
