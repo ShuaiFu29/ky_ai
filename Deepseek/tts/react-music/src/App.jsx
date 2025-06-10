@@ -3,9 +3,9 @@ import './App.css'
 
 function App() {
   // 火山引擎tts 配置文件
-  const TOKEN = 'j9UxclBYynAuwuAsLuCcT9DiiWPgeG7z'
-  const APP_ID = '6859148229'
-  const CLUSTER_ID = 'volcano_tts'
+  // const TOKEN = 'j9UxclBYynAuwuAsLuCcT9DiiWPgeG7z'
+  // const APP_ID = '6859148229'
+  // const CLUSTER_ID = 'volcano_tts'
 
   // 代码可读性高于一切
   const [prompt, setPrompt] = useState('大家好，我是马嘉祺')
