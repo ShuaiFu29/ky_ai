@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>弹性布局</title>
+</head>
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .container {
+        display: flex;
+        width: 1400px;
+        height: 300px;
+    }
+
+    /* flex: flex-grow(放大比例)  flex-shrink(缩小比例) flex-bais(基本大小) */
+    .left {
+        flex: 1 2 500px;
+        background-color: red;
+    }
+
+    .right {
+        flex: 2 1 400px;
+        background-color: blue;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+
+</html>
