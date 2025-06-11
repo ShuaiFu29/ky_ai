@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // this 是函数运行后的 指针对象
+        var name = 'windowName'
+        var a = {
+            name: '张三',
+            fn: function () {
+                console.log(this)
+                console.log(this.name)
+            }
+        }
+        a.fn()  // 对象的方法调用，指向对象(调用者)
+        
+    </script>
+</body>
+
+</html>
