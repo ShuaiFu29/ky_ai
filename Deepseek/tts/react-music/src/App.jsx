@@ -3,10 +3,7 @@ import './App.css'
 
 function App() {
   // 火山引擎tts 配置文件
-  // const TOKEN = 'j9UxclBYynAuwuAsLuCcT9DiiWPgeG7z'
-  // const APP_ID = '6859148229'
-  // const CLUSTER_ID = 'volcano_tts'
-
+  const { VITE_TOKEN, VITE_APP_ID, VITE_CLUSTER_ID } = import.meta.env
   // 代码可读性高于一切
   const [prompt, setPrompt] = useState('大家好，我是马嘉祺')
   // react use 开头 ref hook 可以获取DOM 元素
