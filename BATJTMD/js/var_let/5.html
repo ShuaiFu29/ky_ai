@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" id="inp">
+  <script>
+    // function Person(name, age) {
+    //   this.name = name
+    //   this.age = age
+    // }
+    // // 构造函数new 
+    // const p = new Person('张三', 19)
+    // console.log(p.name)
+    // document.getElementById('inp').addEventListener('keydown', function () {
+    //   console.log(this)
+    //   console.log(this.value)
+    // })
+
+    var name = 'windowName'
+    var a = {
+      name: 'Tom',
+      fun1: function () {
+        console.log(this.name)
+      },
+      fun2: function () {
+        // this -> a
+        setTimeout(function () {
+          // this 没有 该省都省
+          this.fun1()
+        }, 1000)
+      }
+    }
+    a.fun2()
+  </script>
+</body>
+
+</html>
