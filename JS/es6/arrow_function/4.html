@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>call、apply、bind</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  var a = {
+    name: "张三",
+    func1: function () {
+      console.log(this.name)
+    },
+    func2: function () {
+      setTimeout(function () {
+        // 加入this 可以被指定
+        this.func1()
+      }.apply(a), 1000)
+    }
+    // func2: function () {
+    //   // this 的丢失  作用域链
+    //   var that = this
+    //   setTimeout(function () {
+    //     console.log(that)
+    //     that.func1()
+    //   }.apply(this), 1000)
+    // }
+  }
+  a.func2()
+</script>
+
+</html>

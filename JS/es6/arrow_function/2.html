@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+
+</body>
+<script>
+  // 函数是如何区分 构造 还是 执行的？
+  // 函数是一个对象 [[constructor]] [[caller]]
+  // 分支选择
+  // JS 函数内部 可以执行的对象 内部有两个方法 constructor 和 caller
+  function Person(name, age) {
+    this.name = name
+    this.age = age
+  }
+  let p1 = new Person('张三', 18)
+  Person.prototype.sayHi = function () {
+    console.log('hello' + this.name)
+  }
+  console.log(Person.prototype.constructor)
+  console.log(p1, 1111)
+  console.log(p1.sayHi())
+</script>
+
+</html>
