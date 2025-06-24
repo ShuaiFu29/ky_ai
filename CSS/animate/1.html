@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS 动画</title>
+</head>
+<style>
+  .box {
+    width: 100px;
+    height: 100px;
+    /* 相对定位 */
+    /* position: relative;
+    top: 0;
+    left: 0; */
+    background-color: red;
+  }
+</style>
+
+<body>
+  <div class="box">
+  </div>
+</body>
+<script>
+  const box = document.querySelector('.box')
+  let width = 0
+  function move() {
+    width += 2
+    box.style.width = width + 'px'
+    if (width < 500) {
+      requestAnimationFrame(move)
+    }
+  }
+  move()
+</script>
+
+</html>
