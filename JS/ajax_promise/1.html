@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS 请求</title>
+</head>
+
+<body>
+  <ul id="repos"></ul>
+</body>
+<script>
+  // API 接口地址
+  // www.bilibili.com  网站地址 用户地址
+  // https://api.github.com/users/ShuaiFu29  url
+  // JSON 格式 数据返回
+  // 后端写接口 node java go
+  // url 对应的是资源
+  // 通过fetch 主动拉资源  前端  自己做主
+  // web 2.0 动态页面
+  document.addEventListener('DOMContentLoaded', async () => {
+    const repos = document.getElementById('repos')
+    // 请求回来的二进制流
+    // fetch 返回的是一个promise对象
+    // new Promise Promise{} fetch 本质是 返回promise 实例
+    console.log(fetch('https://api.github.com/users/ShuaiFu29/repos'))
+    // pending 等待状态  fullfilled 成功状态  rejected 失败状态
+    // const result = await fetch('https://api.github.com/users/ShuaiFu29/repos')
+    // console.log(result)
+    // const data = await result.json()
+    // data.forEach(item => {
+    //   const li = document.createElement('li')
+    //   li.textContent = item.name
+    //   repos.appendChild(li)
+    // })
+    // es8 async await
+    // fetch('https://api.github.com/users/ShuaiFu29/repos')
+    //   // then 的链式调用有点繁琐
+    //   .then(res => res.json())
+    //   .then(data => {
+    //     data.forEach(item => {
+    //       const li = document.createElement('li')
+    //       li.textContent = item.name
+    //       repos.appendChild(li)
+    //     })
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
+  })
+  // // const repos = document.getElementById('repos')
+  // fetch('https://api.github.com/users/ShuaiFu29/repos')
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     data.forEach(item => {
+  //       const li = document.createElement('li')
+  //       li.textContent = item.name
+  //       repos.appendChild(li)
+  //     })
+  //   })
+</script>
+
+</html>

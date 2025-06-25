@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ajax</title>
+</head>
+
+<body>
+  <ul id="repos">
+  </ul>
+</body>
+<!-- <script type="module"> -->
+<script>
+  // https://api.github.com/users/ShuaiFu29  url
+  // 前后端分离  js 主动的请求接口(异步任务)
+  // xhr 对象
+  // 早期接口请求的对象
+  // const xhr = new XMLHttpRequest()
+  // // http 请求 GET 打开数据传输的通道
+  // // 底层 好理解 
+  // // console.log(xhr.readyState)
+
+  // xhr.open('GET', 'https://api.github.com/users/ShuaiFu29/repos')
+  // // 发送请求
+  // xhr.send()
+  // // es6 之前的技术 对象 连promise 都没有 哪来的then
+  // // 事件监听  回调函数
+  // // console.log(xhr.readyState)
+  // xhr.onreadystatechange = function () {
+  //   if (xhr.readyState === 4) {
+  //     // 响应内容到达了
+  //     // 后端数据接口的格式是XML(可扩展标记语言) HTML(超文本标记语音) 也是XML 的一种格式 <song></song>
+  //     // JSON {author:'林俊杰',title:'江南'}
+  //     const data = JSON.parse(xhr.responseText)
+  //     document.getElementById('repos').innerHTML = data.map(item => `<li>${item.name}</li>`).join('')
+  //   }
+  // }
+  // 共同点 http 请求 xhr 对象
+  // 区别 url 参数
+  const getJSON = async (url) => {
+    return new Promise((resolve, reject) => {
+      // executor 执行器
+      const xhr = new XMLHttpRequest()
+      xhr.open('GET', url)
+      xhr.send()
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            resolve(JSON.parse(xhr.responseText))
+          } else {
+            reject(new Error(xhr.statusText))
+          }
+        }
+      }
+    })
+  }
+  (async () => {
+    // fullfilled 状态
+    const result = await getJSON('https://api.github.com/users/ShuaiFu29/repos')
+    document.getElementById('repos').innerHTML = result.map(item => `<li>${item.name}</li>`).join('')
+  })()
+</script>
+
+</html>
