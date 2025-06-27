@@ -28,3 +28,14 @@
   data-original 自定义属性 不会影响页面渲染 data- 数据属性
   图片的源地址的img 数据
   original 原来的
+- 性能问题
+  - 解决了性能问题  首屏加载速度  
+  - onScroll 触发太频繁   JS 性能
+  - forEach imgs  
+  - getBoundingClientRect  触发回流 
+- 防抖 节流
+- Intersection Observer API
+  - observer 观察 异步回调  不是同步 在浏览器的后台
+  - intersection 交集 和 可视区交叉
+  - 不再需要onScroll 不需要节流
+  
