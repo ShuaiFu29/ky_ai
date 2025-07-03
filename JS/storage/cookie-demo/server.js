@@ -43,6 +43,7 @@ const server = http.createServer((req, res) => {
         }
       })
   }
+
   // 后端路由 暴露资源
   if (req.method == 'GET' && req.url == '/style.css') {
     // 协议 http://  域名 localhost  端口 8080  路径 /style.css  查询 queryString
@@ -60,6 +61,7 @@ const server = http.createServer((req, res) => {
     })
     return
   }
+
   if (req.method == 'GET' && req.url == '/script.js') {
     fs.readFile(path.join(__dirname, 'public', 'script.js'), (error, data) => {
       if (error) {
@@ -74,6 +76,42 @@ const server = http.createServer((req, res) => {
       }
     })
     return
+  }
+
+  if (req.method == 'POST' && req.url == '/login') {
+    // 用户名和密码的校验
+    res.writeHead(200, {
+      // 服务器端设置 
+      'Set-Cookie': 'user=admin',
+      'Content-Type': 'application/json'
+    })
+
+    res.end(
+      JSON.stringify({
+        success: true,
+        msg: '登录成功'
+      })
+    )
+  }
+
+  if (req.method == 'GET' && req.url == '/check-login') {
+    if (req.headers.cookie) {
+      res.writeHead(200, {
+        'Content-Type': 'application/json'
+      })
+      res.end(JSON.stringify({
+        loggedIn: true,
+        username: 'admin'
+      }))
+    } else {
+      res.writeHead(200, {
+        'Content-Type': 'application/json'
+      })
+      res.end(JSON.stringify({
+        loggedIn: false,
+        username: ''
+      }))
+    }
   }
 })
 server.listen(8080, () => {
