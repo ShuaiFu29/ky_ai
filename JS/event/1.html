@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS DOM2 事件机制</title>
+</head>
+<style>
+  #parent {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+  }
+
+  #child {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+  }
+</style>
+
+<body>
+  <div id="parent">
+    <div id="child"></div>
+  </div>
+</body>
+<script>
+  // html css js 各司其职
+  // js 事件也不要用DOM0 html js 耦合在一起
+  // DOM0 和 DOM2 混用  不好维护
+  // addEventListener 统一用  事件传播机制
+  const child = document.getElementById('child')
+  child.addEventListener('click', () => {
+    console.log('child click')
+  }, false)
+  const parent = document.getElementById('parent')
+  parent.addEventListener('click', () => {
+    console.log('parent click')
+  }, false)
+  window.addEventListener('click', () => {
+    console.log('window click')
+  }, false)
+</script>
+
+</html>
