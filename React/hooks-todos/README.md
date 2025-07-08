@@ -25,3 +25,25 @@
   - 移动端的重要单位  px 不要用了 绝对单位
     移动端 宽高不定的 rem(相对于 html font-size)   vw/vh(viewport)  em (相对于自身的font-size 等比例)
     使用相对单位，可以在所有设备上适配
+
+- props
+  - 传递状态
+  - 自定义事件
+  - 直接解构  const {} = props
+
+- 数据绑定
+  - 变量  修改值
+  - 数据状态
+    - Data binding **数据**绑定  jsx 就是静态的
+    {} 数据绑定
+    - 数据和界面状态的统一
+      - 界面由数据驱动
+      - 数据和界面状态的一致性
+    - 响应式的
+  - Vue: <input v-model='text' />   双向绑定
+  - React: <input value={text} onChange={e => setText(e.target.value)} />  单向绑定
+
+- vue 和react 的区别
+  - vue 好入门，API 文档好用
+  - react 倾向于原生JS 缺点入门难
+    - hooks
