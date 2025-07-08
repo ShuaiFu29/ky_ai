@@ -25,3 +25,32 @@
     事件让它他在冒泡阶段执行
   - 在哪个阶段执行？
   
+## 事件委托优势 Event Delegation
+- 性能优化
+  - 将事件委托给最外层函数
+  React 大型项目开发
+  给我们的事件节点event.target 添加一个唯一属性
+- 动态节点的事件
+  滚动到底部，一次新增一堆新元素
+  事件委托可以有效解决
+- 同一元素同一事件  注册多次
+  - DOM 节点
+  - Event type 
+  - 监听器(回调函数)  event loop
+    event 对象
+  - useCapture
+  - event.preventDefault()   // 阻止默认行为
+    默认行为 form submit a 标签 
+  - event.stopPropagation()  // 阻止冒泡
+
+- 用户交互的便利体验问题
+  - toggle按钮
+  - 点击页面任何空白地方可以关闭  方便  stopPropagation
+  - 显示区域可以交互  stopPropagation
+
+- SynctheticEvent 合成事件
+  - 委托 #root
+    - 性能优化框架帮我们做
+  - 事件池 Event pooling
+    大型密集交互的应用
+  - 在最近的版本中又可以安全使用了
