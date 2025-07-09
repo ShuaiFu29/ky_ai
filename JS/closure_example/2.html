@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>防抖节流</title>
+</head>
+
+<body>
+  <input type="text" id="textA">
+</body>
+
+<script>
+  // 耗时性的
+  // google suggest  搜索建议  服务器直接宕机
+  // 图片懒加载  scroll + getBoundingClientRect  触发频繁太高
+  // 减少触发频率  没有必要每次都触发 用户意图单词为单位
+  // 函数的参数也是函数，高阶函数
+  // 高阶函数  耗时函数  fn任何函数减少执行频率
+  // 返回一个新函数  频繁执行
+  let textA = document.getElementById('textA')
+  let debounce = function (fn, delay) {
+    return function (args) {
+      //定时器返回ID  fn 自由变量  fn 对象
+      clearTimeout(fn.id)
+      fn.id = setTimeout(() => {
+        fn(args)
+      }, delay)
+    }
+  }
+  textA.addEventListener('input', debounce(function () {
+    console.log(textA.value)
+  }, 1000))
+
+</script>
+
+</html>
