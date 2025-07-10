@@ -13,7 +13,7 @@ const TodoForm = ({ onAddTodo }) => {
     onAddTodo(result)
     setText('')    // 数据状态和界面状态一致要敏感
     // 失去焦点
-    console.log(inputRef.current)
+    // console.log(inputRef.current)
     inputRef.current.blur()
   }
   const [text, setText] = useState('')

@@ -47,3 +47,48 @@
   - vue 好入门，API 文档好用
   - react 倾向于原生JS 缺点入门难
     - hooks
+
+- 本地存储
+  - localStorage  html5 
+    key:value  存储
+    localStorage.setItem(key,value)
+    localStorage.getItem(key)
+    localStorage.removeItem(key)
+    localStorage.clear()
+  - BOM  Browser Object Model
+  - DOM  Document Object Model
+- 本地存储
+  - localStorage 和 cookie 有什么不同？
+  - http 无状态  head cookie 带上
+  - cookie 过大 影响http 传输性能  4kb
+  - cookie 前端、后端都可以设置
+    过期时间  domain  path  secure  httpOnly
+  - localStorage 只在浏览器设置，不参与http 请求  5MB
+  - IndexedDB  数据库  GB
+
+## 自定义hooks
+  - 自己定义的
+  - use开头
+  - 某一项功能
+    简单函数的封装
+    响应式的状态
+    effect
+    todos
+- 自定义hooks
+  - 现代React 架构一部分
+  - hooks 目录
+    自定义hooks
+    框架common 部分
+    业务定制ahooks 
+  - use 开头
+    state，effect 逻辑封装复用
+  - return
+    todos  toggle addTodos deleteTodos
+    函数式编码思想的体现
+  - 组件更好的聚焦于模块渲染
+  - 全面hooks 函数式编程
+
+- 两个遗憾
+  - ../../ 
+    vite alias 配置
+  - toggle delete 跨越组件层级有点多  useContext
