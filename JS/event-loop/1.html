@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+
+
+<body>
+
+</body>
+<script>
+  // 一个scrip 就是一个宏任务开始
+  // 同步任务
+  // JS 调用栈
+  // CUP 计算
+  // 异步任务  耗时性的任务
+  // 单线程
+  //  event loop 是JS 执行机制  也是代码执行的开始
+  // html 是第一个BFC 块级格式化上下文 
+  // console.log('script start')
+  // // 异步任务，宏任务
+  // setTimeout(() => {
+  //   console.log('setTimeout')
+  // }, 0)
+  // // then 异步 微任务  
+  // Promise.resolve().then(() => {
+  //   console.log('promise1')
+  // })
+  // console.log('script end')  
+  const target = document.createElement('div')
+  document.body.appendChild(target)
+  const observer = new MutationObserver(() => {
+    console.log('微任务: MutaionObserver')
+  })
+  // 监听target 节点的变化
+  observer.observe(target, {
+    attributes: true,
+    childList: true
+  })
+  target.setAttribute('data-set', '123')
+  target.appendChild(document.createElement('span'))
+  target.setAttribute('style', 'background-color: green')
+</script>
+</script>
+
+</html>
