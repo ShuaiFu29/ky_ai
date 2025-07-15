@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>闭包-单例</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  function StorageBase() {
+    this.storage = {}
+  }
+  StorageBase.prototype.getItem = function (key) {
+    return this.storage[key]
+  }
+  StorageBase.prototype.setItem = function (key, value) {
+    return this.storage[key] = value
+  }
+  const Storage = (function () {
+    let instance = null
+    return function () {
+      if (!instance) {
+        instance = new StorageBase()
+      }
+      return instance
+    }
+  })()
+  const storage1 = Storage()
+  storage1.setItem('name', '张三')
+  console.log(storage1.getItem('name'))
+  const storage2 = Storage()
+  console.log(storage1 === storage2)
+</script>
+
+</html>
