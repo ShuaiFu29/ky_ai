@@ -1,12 +1,24 @@
 import {
-  createContext,
+  useReducer,
+  createContext
 } from 'react'
+import {
+  repoReducer
+} from '@/reducer/repoReducer'
 
-const GlobalContext = createContext()
+export const GlobalContext = createContext();
+
+const initialState = {
+  repos: [],
+  loading: false,
+  error: null
+}
 
 export const GlobalProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(repoReducer, initialState)
   return (
-    <GlobalContext value=''>
+    // state 应用状态
+    <GlobalContext value={{ state, dispatch }}>
       {children}
     </GlobalContext>
   )

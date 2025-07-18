@@ -2,6 +2,7 @@
 - api.github.io/users/ShuaiFu29/repos
 - 综合react 开发全家桶、项目级别、大型的、性能
 
+
 ## 路由设计
     - react-router-demo
     - /users/:username/repos
@@ -27,3 +28,17 @@
         入口文件
         添加路由  SPA
         添加全局应用状态管理
+
+- RepoList 功能模块
+    - params 解析
+        - useParams 动态参数对象
+        - 不要放到useEffect 里面
+        - 校验id 
+            不要相信用户的任何提交
+        - navigate('/')  -> useEffect 中去 不要阻止页面的渲染
+- 组件开发模式
+    - UI 组件(JSX)
+    - 自定义hooks useRepos 方便
+    - 状态管理  应用层级  context 来管理
+        - repos  loading error => context value
+        - useReducer reducer 函数
