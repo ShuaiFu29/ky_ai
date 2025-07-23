@@ -1,7 +1,8 @@
-import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken'
 // 安全性 编码的时候加密
 // 解码的时候用于解密
-const secret = '!@#$%^&*()_+';
+// 加盐
+const secret = '!@#$%^&*()_+'
 // login 模块 mock 
 export default [
   {
@@ -10,7 +11,7 @@ export default [
     timeout: 2000, // 请求耗时
     response: (req, res) => {
       // req, username, password
-      const { username, password } = req.body;
+      const { username, password } = req.body
       if (username !== 'admin' && password !== '123456') {
         return {
           code: 1,
@@ -30,8 +31,10 @@ export default [
       console.log(token)
       return {
         token,
-        username,
-        password
+        data: {
+          id: "001",
+          username: 'admin'
+        }
       }
     }
   },
@@ -40,10 +43,11 @@ export default [
     method: 'get',
     response: (req, res) => {
       // 用户端 token headers
-      const token = req.headers['authorization'];
+      const token = req.headers['authorization'].split(' ')[1]
+      console.log(token)
       try {
-        const decode = jwt.decode(token, secret);
-        console.log(decode);
+        const decode = jwt.decode(token, secret)
+        console.log(decode)
         return {
           code: 0,
           data: decode.user
@@ -54,9 +58,6 @@ export default [
           message: 'Invaild token'
         }
       }
-      // return{
-      //     token
-      // }
     }
   }
 ]
