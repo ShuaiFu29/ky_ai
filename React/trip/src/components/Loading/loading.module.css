@@ -1,0 +1,58 @@
+.wrapper>div {
+  position: fixed;
+  /**static**/
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #d44439;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  /* 关键帧动画 */
+  /* animation-name 动画脚本 */
+  /* animation-duration 动画时长 */
+  /* animation-iteration-count 动画次数 */
+  /* animation-timing-function 动画速度曲线 */
+  /* ease-in-out 先慢后快再慢 */
+  /* ease-in 先慢后快 */
+  /* ease-out 先快后慢 */
+  /* linear 匀速 */
+  /* cubic-bezier(0.1, 0.7, 1.0, 0.1) 自定义 */
+  animation: loading 1.4s infinite ease-in-out;
+
+}
+
+.wrapper>div:nth-child(1) {
+  animation-delay: -0.35s;
+  background-color: pink;
+}
+
+.wrapper>div:nth-child(2) {
+  animation-delay: -0.7s;
+  background-color: green;
+}
+
+.wrapper>div:nth-child(3) {
+  animation-delay: -1.4s;
+  background-color: red;
+}
+
+
+@keyframes loading {
+
+  /* 1.4s 你设计多少个动作 */
+  0%,
+  100% {
+    transform: scale(0);
+  }
+
+  /* 25% {
+    background-color: pink;
+  } */
+
+  50% {
+    transform: scale(1);
+  }
+}
