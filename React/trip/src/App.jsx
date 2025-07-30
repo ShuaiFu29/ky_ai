@@ -18,6 +18,7 @@ const Discount = lazy(() => import('@/pages/Discount'))
 const Search = lazy(() => import('@/pages/Search'))
 const Trip = lazy(() => import('@/pages/Trip'))
 const Detail = lazy(() => import('@/pages/Detail'))
+const Toast = lazy(() => import('@/components/Toast'))
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
           </Route>
         </Routes>
       </Suspense>
+      <Toast />
     </>
   )
 }
