@@ -19,6 +19,7 @@ const Search = lazy(() => import('@/pages/Search'))
 const Trip = lazy(() => import('@/pages/Trip'))
 const Detail = lazy(() => import('@/pages/Detail'))
 const Toast = lazy(() => import('@/components/Toast'))
+const Coze = lazy(() => import('@/pages/Coze'))
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           {/* 空的Navbar */}
           <Route element={<BlankLayout />}>
             <Route path='/search' element={<Search />} />
+            <Route path="/coze" element={<Coze />} />
             <Route path='/detail/:id' element={<Detail />} />
           </Route>
         </Routes>
