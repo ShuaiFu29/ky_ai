@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="btn">按钮</button>
+  <button id="rmBtn">移除事件</button>
+  <script>
+    // 订阅发布者模式   
+    const callbackA = function () {
+      alert('123')
+    }
+    const callbackB = function () {
+      alert('456')
+    }
+    const btn = document.getElementById('btn')
+    btn.addEventListener('click', callbackA)
+    btn.addEventListener('click', callbackB)
+
+    const rmBtn = document.getElementById('rmBtn')
+    rmBtn.addEventListener('click', () => {
+      btn.removeEventListener('click', callbackA)
+      btn.removeEventListener('click', callbackB)
+    })
+
+  </script>
+</body>
+
+</html>
