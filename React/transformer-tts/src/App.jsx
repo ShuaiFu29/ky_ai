@@ -33,13 +33,13 @@ function App() {
     })
 
     const onMessageReceived = (e) => {
-      console.log(e, '来自主线程');
+      // console.log(e, '来自主线程');
       switch (e.data.status) {
         case 'initiate':
           // llm ready 了吗？
-          setReady(false)
+          setReady(false);
           setProgressItems(prev => [...prev, e.data])
-          break
+          break;
         case 'progress':
           // console.log(e.data)
           setProgressItems(
@@ -53,15 +53,21 @@ function App() {
               return item
             })
           )
-          break
+          break;
         case 'done':
           setProgressItems(
             prev => prev.filter(item => item.file !== e.data.file)
           )
-          break
+          break;
         case 'ready':
-          setReady(true)
-          break
+          setReady(true);
+          break;
+        case 'complete':
+          setDisabled(false);
+          const blobUrl = URL.createObjectURL(e.data.output);
+          // console.log(blobUrl);
+          setOutput(blobUrl);
+          break;
       }
     }
     worker.current.onmessage = onMessageReceived;
@@ -79,12 +85,14 @@ function App() {
     });
   }
 
-  const isLoading = ready === false
+  const isLoading = ready === false;
+
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-100">
       {/* llm 初始化 */}
       <div
-        className='absolute z-50 top-0 left-0 w-full h-full transition-all px-8 flex flex-col justify-center text-center'
+        className="absolute z-50 top-0 left-0 w-full h-full transition-all 
+      px-8 flex flex-col justify-center text-center"
         style={{
           opacity: isLoading ? 1 : 0,
           pointerEvents: isLoading ? 'all' : 'none',
@@ -94,7 +102,7 @@ function App() {
       >
         {
           isLoading && (
-            <label className='text-white text-xl p-3'>
+            <label className="text-white text-xl p-3">
               Loading models... (only run once)
             </label>
           )
@@ -110,6 +118,7 @@ function App() {
           ))
         }
       </div>
+      {/* tts 功能区 */}
       <div className="bg-white p-8 rounded-lg w-full max-w-xl m-2">
         <h1 className="text-3xl font-semibold text-gray-800 mb-1 text-center">
           In browser Text To Speech(端模型)
