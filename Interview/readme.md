@@ -32,3 +32,7 @@
         - JSON.stringify() 没办法拷贝的
         - 拷贝，简单，遍历，复杂
         - 深度，递归
+
+- 响应式底层    
+    - Object.defineProperty()
+    - Proxy
