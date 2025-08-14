@@ -1,0 +1,37 @@
+import { Component } from "react";
+import Child from "./Child";
+class LifecycleDemo extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: 0,
+    }
+  }
+  // 状态,生命周期 
+  // JSX
+  doIncrement = () => {
+    this.setState({
+      count: this.state.count + 1
+    })
+  }
+  componentDidMount() {
+    console.log('组件将要挂载')
+  }
+  componentWillUnmount() {
+    console.log('组件将要卸载')
+  }
+
+  render() {
+    return (
+      <>
+        <h1>LifecycleDemo</h1>
+        <p>Count:{this.state.count}</p>
+        <button onClick={this.doIncrement.bind(this)}>Increment</button>
+        <Child title={'hello'} />
+      </>
+    )
+  }
+}
+
+export default LifecycleDemo;
