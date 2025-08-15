@@ -36,3 +36,22 @@
 - 响应式底层    
     - Object.defineProperty()
     - Proxy
+
+
+## Git
+开发中如何使用git 的
+
+- git config --global user.name ""
+  git config --global user.email ""  
+- 入职 git clone 公司的代码
+    - 主分支  main/master
+        所有人都在用的，线上分支
+    - 新开一个分支
+    git checkout -b xxx
+- 常用命令
+    git pull origin main 每天上班前的动作
+    git status 当前git 状态 
+    git log --online 查看提交记录
+    git add . 提交到暂存区
+    git commit -m ""    提交到仓库
+    git push origin main 提交到远程仓库
