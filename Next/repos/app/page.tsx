@@ -1,41 +1,39 @@
-'use client' // client 编译
+"use client"; // client 编译
 // 事件监听、生命周期等
-import {
-  useState,
-  useEffect,
-} from "react";
 
 import {
-  Button,
-} from '@/components/ui/button';
+  useState,
+  useEffect
+} from 'react';
+
+import {
+  type Todo
+} from '@/app/types/todo'
+
+import {
+  Button
+} from "@/components/ui/button";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardContent
-} from '@/components/ui/card';
+} from "@/components/ui/card";
 import {
-  Input,
-} from '@/components/ui/input';
-import { text } from "stream/consumers";
+  Input
+} from "@/components/ui/input";
 
 export default function Home() {
-  const [newTodo, setNewTodo] = useState('');
-  const [todos, setTodos] = useState([]);
-
-  const fetchTodos = async () => {
-    const response = await fetch('/api/todos')
-    const data = await response.json()
-    setTodos(data)
-  };
+  const [newTodo, setNewTodo] = useState("");
+  const [todos, setTodos] = useState<Todo[]>([]);
 
   useEffect(() => {
-    fetchTodos()
+    fetchTodos();
   }, [])
   const addTodo = async () => {
-    if (!newTodo) return
+    if (!newTodo.trim()) return;
 
-    await fetch('api/todos', {
+    await fetch('/api/todos', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -45,11 +43,38 @@ export default function Home() {
       })
     })
 
-    setNewTodo('')
+    setNewTodo("")
+    fetchTodos();
+  }
+
+  const fetchTodos = async () => {
+    const response = await fetch('/api/todos');
+    const data: Todo[] = await response.json();
+    setTodos(data);
+  }
+
+  const toggleTodo = async (id: number, completed: boolean) => {
+    await fetch('/api/todos', {
+      method: 'PUT',
+      headers: {
+        "Content-Type": 'application-json'
+      },
+      body: JSON.stringify({ id, completed })
+    })
     fetchTodos()
-  };
+  }
+  const deleteTodo = async (id: number) => {
+    await fetch('/api/todos', {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ id })
+    })
+    fetchTodos()
+  }
   return (
-    // xm md lg
+    // xm md   lg 
     <main className="container mx-auto p-4 max-w-md">
       <Card>
         <CardHeader>
@@ -60,39 +85,41 @@ export default function Home() {
             <Input
               value={newTodo}
               onChange={e => setNewTodo(e.target.value)}
-              placeholder="Add a new todo"
+              placeholder="Add new todo..."
               onKeyPress={(e) => e.key === 'Enter' && addTodo()}
             />
             <Button onClick={addTodo}>Add</Button>
           </div>
+
           <div className="space-y-2">
             {
-              todos.map((todo: { id: number; text: string; completed: boolean }) => (
+              todos.map((todo: Todo) => (
                 <div
                   key={todo.id}
-                  className="flex justify-between items-center p-2 border rounded"
+                  className="flex items-center justify-between p-2 border rounded"
                 >
                   <div className="flex items-center gap-2">
                     <input
                       type="checkbox"
                       checked={todo.completed}
+                      onChange={e => toggleTodo(todo.id, e.target.checked)}
                       className="w-4 h-4"
                     />
-                    <span className={todo.completed ? 'line-through' : ''}>{todo.text}</span>
+                    <span className={todo.completed ? 'line-through' : ''}>
+                      {todo.text}
+                    </span>
                   </div>
                   <Button
                     variant="destructive"
-                    size='sm'
-                  >
-                    Delete
-                  </Button>
+                    size="sm"
+                    onClick={() => deleteTodo(todo.id)}
+                  >Delete</Button>
                 </div>
               ))
             }
           </div>
         </CardContent>
       </Card>
-
     </main>
   );
 }

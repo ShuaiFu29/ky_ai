@@ -4,11 +4,9 @@ import {
 
 // ts 是js 超级
 
-interface Todo {
-  id: number,
-  text: string,
-  completed: boolean
-}
+import { type Todo } from '@/app/types/todo'
+import { todo } from 'node:test'
+
 let todos: Todo[] = [
   {
     id: 1,
@@ -47,4 +45,19 @@ export async function POST(request: Request) {
   }
   todos.push(newTodo)
   return NextResponse.json(newTodo)
+}
+
+export async function PUT(request: Request) {
+  const data = await request.json()  // 请求体
+  todos = todos.map(todo =>
+    todo.id === data.id ? { ...todo, completed: data.completed } : todo
+  )
+  return NextResponse.json(todos)
+}
+
+// RESTFull
+export async function DELETE(request: Request) {
+  const data = await request.json()
+  todos = todos.filter(todo => todo.id !== data.id)
+  return NextResponse.json(todos)
 }
