@@ -27,6 +27,18 @@
         every
         some
         any
-    - 
+    - 拼接/裁剪
+        concat slice
+    - 扁平化
+        flat
+    - 迭代器 iterable
+        keys() values() entries()
+    - join/toString() 拼接
+    - 归约
+        reduce 相加
+    - 静态方法
+        Array.isArray
+        Array.from
+        Array.of
 - es6 新增方法
 - 遍历/查找类/转换类/拼接类/统计类/
