@@ -1,0 +1,17 @@
+{
+  "name": "rag",
+  "version": "1.0.0",
+  "description": "- Function Call 给llm 提供工具和服务\r - MCP 定义了LLM 与外界资源通信协议",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "openai": "^5.16.0"
+  }
+}
