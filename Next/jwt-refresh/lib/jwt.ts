@@ -50,3 +50,14 @@ export const setAuthCookies = async (accessToken: string, refreshToken: string) 
     path: '/'
   })
 }
+
+export const verifyToken = async (token: string) => {
+  try {
+    const { payload } = await jwtVerify(token,
+      getJwtSecretKey()
+    )
+    return payload
+  } catch (error) {
+    return null
+  }
+}
