@@ -144,6 +144,8 @@
     - Set 已经上传的分片索引
     - ?? 空值合并操作符
     - Promise.all 并发
+    - Map 和 Set
+        大文件切片已上传索引的不重复
 
 - restful api
     - uploadChunk POST  /api/upload/chunk    url 设计

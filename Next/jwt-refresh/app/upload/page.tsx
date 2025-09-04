@@ -86,6 +86,15 @@ const Upload = () => {
     })
     return res.json() as Promise<InitResp>;
   }
+  const pause = () => {
+    pausedRef.current = true
+    abortRef.current?.abort()
+  }
+  const resume = async () => {
+    if (!file || !hash) return
+    setStatus('继续上传...')
+    await startUpload()
+  }
   const uploadedChunk = async (index: number, signal: AbortSignal) => {
     const start = index * CHUNK_SIZE
     const end = Math.min(file!.size, start + CHUNK_SIZE)
@@ -110,11 +119,11 @@ const Upload = () => {
     abortRef.current = new AbortController();
     pausedRef.current = false;
 
-    // const init = await initUpload();
-    const init = {
-      complete: false,
-      uploaded: []
-    }
+    const init = await initUpload();
+    // const init = {
+    //   complete: false,
+    //   uploaded: []
+    // }
     if (init.complete) {
       setProgress(100);
       setStatus("秒传完成");
@@ -189,6 +198,18 @@ const Upload = () => {
                   onClick={startUpload}
                 >
                   开始上传
+                </button>
+                <button
+                  className='rounded-xl border px-4 py-2'
+                  onClick={pause}
+                >
+                  暂停
+                </button>
+                <button
+                  className='rounded-xl border px-4 py-2'
+                  onClick={resume}
+                >
+                  继续
                 </button>
               </div>
             </div>
