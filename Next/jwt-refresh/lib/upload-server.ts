@@ -8,7 +8,8 @@ import {
   statSync
 } from 'fs';
 import {
-  join
+  join,
+  resolve
 } from 'path';
 // process.cwd() 是运行命令的当前工作目录
 // path.join 拼接路径字符串，不解析；path.resolve 从右到左解析，遇绝对路径替换，返回绝对路径
@@ -95,4 +96,23 @@ export function finalFilePath(fileHash: string, fileName: string) {
 export function fileAlreadyExist(fileHash: string, fileName: string) {
   const p = finalFilePath(fileHash, fileName)
   return existsSync(p) && statSync(p).size > 0
+}
+
+export async function mergeChunks(fileHash: string, fileName: string, totalChunks: number) {
+  const {
+    chunkDir
+  } = getUploadDir(fileHash)
+  const target = finalFilePath(fileHash, fileName)
+  const ws = createWriteStream(target)
+  for (let i = 0; i < totalChunks; i++) {
+    const p = join(chunkDir, `${i}.part`)
+    if (!existsSync(p)) throw new Error(`缺少分片：${i}`)
+    const data = readFileSync(p)
+    ws.write(data)
+  }
+  ws.end()
+  return new Promise((resolve, reject) => {
+    ws.on('finish', () => resolve(target))
+    ws.on('error', reject)
+  })
 }
