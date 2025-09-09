@@ -48,3 +48,19 @@ fiber 结点 工作结点
 - 中断
 - 继续
 - fiber 结点对象有哪些属性
+
+## render 分成两个阶段
+- 渲染阶段 构建新的虚拟dom 树 diff patch
+- 提交阶段 把改变应用到dom 上
+
+## diff 算法
+- 同层比较 不然时间复杂度是 O(n^3)
+    - ABCDE  EABCD
+    dom 开销比较大
+    diff 算法除了考虑本身的时间复杂度之外，还要考虑一个因素：dom 操作的次数
+    移动操作比较新增 + 删除操作更少，所以diff 算法会优先考虑移动操作
+    insertBefore
+- 简单diff 算法
+    ABCD  DCAB
+    多节点 diff 算法的目的是为了尽量的复用节点
+    
