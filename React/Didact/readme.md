@@ -63,4 +63,5 @@ fiber 结点 工作结点
 - 简单diff 算法
     ABCD  DCAB
     多节点 diff 算法的目的是为了尽量的复用节点
-    
+
+    diff 算法我们是从一端逐个处理的，叫做简单diff 算法
