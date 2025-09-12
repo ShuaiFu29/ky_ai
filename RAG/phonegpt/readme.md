@@ -68,7 +68,16 @@
     shadcn 按需加载、定制性强
 - lucide-react 图标库
 - useChat 对hooks 的理解 响应式业务的封装 一半函数封装的区别
-
+- prompt 模板设计
+    - 准确
+    - 复用
+    - 格式
+      - 身份
+      - 任务
+      - 分区 context 和 question
+    - 返回格式
+    - 约束 不回答手机之外的内容
+    - 接受一个参数 函数返回 我们的应用 有几个核心的promptTemplate 构成 用心设计
 ## 后端亮点
 - ai streamText
 - result.toDataStreamResponse() 将 streamText 生成的流式结果转换
@@ -83,9 +92,73 @@
       先解析成js 再运行
 - langchain Agent 开发框架
     coze promptTempate  记忆MessageMemory Community
+- 正则html 替换
+- vercel 的AI 版图
+    - next.js
+    - ai-sdk
+    - js 的云端运行环境
+    - v0 bolt
+      ai-sdk/react 流式输出 -> prompt -> embedding 
+      网页 (wikipidia) -> langchain/community + puppeteer(爬取) -> 
+      langchain 提供的分块机制(chunks? 段落) -> embedding -> supabase 存储
 
+    - 向量存储
+    CREATE TABLE public.chunks (
+      id uuid NOT NULL DEFAULT gen_random_uuid(),
+      content text null,
+      vector extensions.vector null,
+      url text null,
+      date_updated timestamp without time zone DEFAULT now(),
+      CONSTRAINT chunks_pkey PRIMARY KEY (id)
+    );
 ## 遇到的问题
 - ai-sdk 检索的时候，LLM 给了老版本的代码 调试出了问题，mcp 解决问题
 - ts-node 编译时不支持esm
     tsconfig.json ts 配置文件
     支持ts-node commonjs
+
+- rpc 调用
+  在supabase 数据库中调用函数
+  ```sql
+  create or replace function get_relevant_chunks(
+    -- 一个长度为 1536 的“向量”
+    query_vector vector(1536),
+    -- 只找“相似度”超过这个值的结果
+    match_threshold float,
+    -- 最多返回多少条结果。
+    match_count int
+  )
+  returns table (
+    id uuid,
+    content text,
+    url text,
+    date_updated timestamp,
+    similarity float
+  )
+  -- 这个函数执行完后，会返回一个“表格形式”的结果。
+  language sql stable
+  -- 说明这个函数是用 SQL 语言写的，并且是“稳定的”
+  -- 函数内容开始。
+  as $$
+    select
+      id,
+      content,
+      url,
+      date_updated,
+      -- chunks.vector <=> query_vector 是 pgvector 扩展提供的“距离”计算
+      1 - (chunks.vector <=> query_vector) as similarity
+    from chunks
+    where 1 - (chunks.vector <=> query_vector) > match_threshold
+    order by similarity desc
+    limit match_count;
+    -- 函数内容结束。
+  $$;
+  ```
+- 向量的相似度计算
+    - mysql 不支持 postgresql 支持
+      <=> 距离计算
+    - 1- >
+    - 数据库支持函数
+      传参
+      指定返回的内容
+      构建sql
